@@ -1,0 +1,50 @@
+<template name="Chatroom">
+    <div class="container">
+        {{#if room.active}}
+            <div class="alert alert-info">
+                開始XU吧!
+            </div>
+        {{else}}
+            <div class="alert alert-info">
+                正在等候使用{{room.keyword}}的有緣人
+            </div>
+        {{/if}}
+
+        
+        {{#each messages}}
+            {{> Message}}
+        {{/each}}
+    </div>
+    <div class="sticky-bottom">
+        {{> NewMessage}}
+        {{#if room.active}}
+            {{> AddFriend}}
+        {{/if}}
+    </div>
+    
+</template>
+
+<template name="Message">
+    {{#if isself}}
+        <p class="text-right">{{text}}</p>
+        <p class="text-right">{{timestampToTime timestamp}}</p>
+    {{else}}
+        <p class="text-left">{{text}}</p>
+        <p class="text-left">{{timestampToTime timestamp}}</p>
+    {{/if}}
+</template>
+
+<template name="NewMessage">
+    
+    <form class="new-message">
+        <div class="form-group">
+            <input type="text" class="form-control" name="text">
+        </div>
+        <button type="submit" class="btn btn-default">\傳送/</button>
+    </form>
+
+</template>
+
+<template name="AddFriend">
+    <button class="btn btn-default">+Pingiu</button>
+</template>
